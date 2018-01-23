@@ -1,0 +1,15 @@
+
+spark-submit  --class "cs_priority_ranker"  \
+              --master yarn                 \
+              --driver-memory 4G            \
+              --deploy-mode cluster         \
+              --supervise                   \
+              --num-executors 23            \
+              --executor-cores 2            \
+              --executor-memory 1G          \
+              --jars /srv/mysql/mysql-connector-java-5.1.39-bin.jar,/srv/spark-stable/spark-2.1.0-bin-hadoop2.6/jars/datanucleus-api-jdo-3.2.6.jar,/srv/spark-stable/spark-2.1.0-bin-hadoop2.6/jars/datanucleus-rdbms-3.2.9.jar,/srv/spark-stable/spark-2.1.0-bin-hadoop2.6/jars/datanucleus-core-3.2.10.jar  \
+              --files /srv/spark-stable/spark-2.1.0-bin-hadoop2.6/conf/hive-site.xml /home/m_connor/cs_ranker/target/scala-2.10/cs-ranker_2.10-1.0.jar  \
+              "SEA" \
+              "2017-10-01"
+
+ yarn logs -applicationId application_1506150594121_41350 >> app.out 
